@@ -54,7 +54,7 @@ http://download.bitdefender.com/business/API/Bitdefender_GravityZone_Cloud_APIGu
 <br />
 <br />
 
-### How to build and install
+### How to build
 ```
 $ git clone https://github.com/vch42/gz-https2syslog-event-listener.git
 $ cd ./gz-https2syslog-event-listener
@@ -63,10 +63,13 @@ $ rm -f ./src/opt/gz-https2syslog-event-listener/certs/blank
 $ version="$(grep "Version" ./src/DEBIAN/control | cut -d' ' -f2)"
 $ dpkg-deb --build ./src ../gz-https2syslog-event-listener_"$version".deb
 $ cd ..
-$ sudo dpkg --install ./gz-https2syslog-event-listener_"$version".deb
 $ rm -rf ./gz-https2syslog-event-listener
 ```
 
+### Hot to install
+```
+$ sudo dpkg --install ./gz-https2syslog-event-listener_"$version".deb
+```
 
 
 
