@@ -12,12 +12,16 @@ http://download.bitdefender.com/business/API/Bitdefender_GravityZone_Cloud_APIGu
 <br />
 <br />
 
-### Improvments:
+> :warning: **WARNING:** While this DEB package is built based of the above mentioned Bitdefender public KB, THE DERIVATIVE WORK CONTAINED IN THIS CODE REPOSITORY IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+### Improvments (compared to the Bitdefender KB):
 * dependencies handling at install time (both deb and nodejs via npm)
 * installs as a service
 * service runs under dedicated low privilege user/group
 * generates a default config and self-signed cert, if found missing
 * upgrade mechanism (will not overwrite an existing valid configuration)
+* automatic installation, no need to manually edit source code files
 
 <br />
 
@@ -62,5 +66,15 @@ $ cd ..
 $ sudo dpkg --install ./gz-https2syslog-event-listener_"$version".deb
 $ rm -rf ./gz-https2syslog-event-listener
 ```
+
+
+
+
+
+
+
+
+
+
 
 
