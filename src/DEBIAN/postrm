@@ -35,8 +35,8 @@ case "$1" in
   upgrade|remove|failed-upgrade|abort-upgrade|abort-install|disappear)
     ;;
   purge)
-      delete_user 'gzsiemcollector'
-      delete_group 'gzsiemcollector'
+      delete_user 'gzsiemlistener'
+      delete_group 'gzsiemlistener'
 
       cd /opt
       rm -rf gz-https2syslog-event-listener
