@@ -34,9 +34,9 @@ http://download.bitdefender.com/business/API/Bitdefender_GravityZone_Cloud_APIGu
 ├── lib
 │   └── systemd
 │       └── system
-│           └── gz-siem-collector.service
+│           └── gz-https2syslog-event-listener.service
 └── opt
-    └── gz-siem-collector
+    └── gz-https2syslog-event-listener
         ├── api
         │   ├── config
         │   │   └── config.json.template
