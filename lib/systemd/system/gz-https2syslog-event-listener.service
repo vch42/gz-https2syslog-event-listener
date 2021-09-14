@@ -1,0 +1,16 @@
+[Unit]
+Description=GZ SIEM HTTPS to SYSLOG event listener
+Requires=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/gz-https2syslog-event-listener
+ExecStart=node /opt/gz-https2syslog-event-listener/server.js /opt/gz-https2syslog-event-listener/api/config/config.json
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+User=gzsiemlistener
+Group=gzsiemlistener
+PermissionsStartOnly=true
+
+[Install]
+WantedBy=multi-user.target
