@@ -1,0 +1,17 @@
+{
+        "name": "gz-https2syslog-event-listener",
+        "version": "1.0.2",
+        "private": true,
+        "description": "Simple nodejs client service that listens for authenticated HTTPS POST requests from GravityZone Cloud and forwards each row in the configured local or remote syslog.",
+        "main": "server.js",
+        "scripts": {
+                "test": "echo \"Error: no test specified\" && exit 1"
+        },
+        "author": "BITDEFENDER SRL",
+        "license": "MIT",
+        "dependencies": {
+                "express": "^4.17.1",
+                "syslog-client": "^1.1.1"
+        }
+}
+
