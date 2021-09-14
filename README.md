@@ -19,3 +19,33 @@ http://download.bitdefender.com/business/API/Bitdefender_GravityZone_Cloud_APIGu
 * generates a default config and self-signed cert, if found missing
 * upgrade mechanism (will not overwrite an existing valid configuration)
 
+<br />
+
+### Contents:
+.
+├── DEBIAN
+│   ├── control
+│   ├── md5sums
+│   ├── postinst
+│   ├── postrm
+│   ├── preinst
+│   └── prerm
+├── lib
+│   └── systemd
+│       └── system
+│           └── gz-siem-collector.service
+└── opt
+    └── gz-siem-collector
+        ├── api
+        │   ├── config
+        │   │   └── config.json.template
+        │   └── epsSyslogHelper.js
+        ├── certs
+        ├── package.json
+        └── server.js
+
+9 directories, 11 files
+<br />
+<br />
+
+
