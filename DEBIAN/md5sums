@@ -1,0 +1,5 @@
+d0b20aaa7793ac2bf0bbeac0c5d036cb  lib/systemd/system/gz-siem-collector.service
+98c73dbd973943431b3283d86b6d09fd  opt/gz-siem-collector/package.json
+639ed8f9e0fe260206ad0a29042c1904  opt/gz-siem-collector/api/config/config.json.template
+65b47f154758587a8bc30d6cd72ed3e5  opt/gz-siem-collector/api/epsSyslogHelper.js
+f19a048bf09199cb06d4b56d2a4f3544  opt/gz-siem-collector/server.js
