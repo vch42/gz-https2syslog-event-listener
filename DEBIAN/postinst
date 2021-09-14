@@ -1,0 +1,151 @@
+#!/bin/bash
+set -e
+set -o pipefail
+
+
+add_user() {
+  : "${1:?'User was not defined'}"
+  declare -r user="$1"
+  declare -r uid="$2"
+
+  if [ -z "$uid" ]; then
+    declare -r uid_flags=""
+  else
+    declare -r uid_flags="--uid $uid"
+  fi
+
+  declare -r group="${3:-$user}"
+  declare -r descr="${4:-No description}"
+  declare -r shell="${5:-/bin/false}"
+
+  if ! getent passwd | grep -q "^$user:"; then
+    echo "Creating system user: $user in $group with $descr and shell $shell"
+    useradd $uid_flags --gid $group --no-create-home --system --shell $shell -c "$descr" $user
+  fi
+}
+
+
+add_group() {
+  : "${1:?'Group was not defined'}"
+  declare -r group="$1"
+  declare -r gid="$2"
+
+  if [ -z "$gid" ]; then
+    declare -r gid_flags=""
+  else
+    declare -r gid_flags="--gid $gid"
+  fi
+
+  if ! getent group | grep -q "^$group:" ; then
+    echo "Creating system group: $group"
+    groupadd $gid_flags --system $group
+  fi
+}
+
+
+
+
+
+
+
+cd /opt/gz-siem-collector/ || exit 1
+
+if hash npm 2> /dev/null; then
+          echo "Running 'npm install' dependencies"
+          npm install --production --unsafe-perm
+          npm rebuild --production --unsafe-perm
+    else
+        echo ""
+        echo ""
+        echo "WARN: 'npm' was not found. Dependencies may be missing!!!"
+        echo "Manually install npm, and do a "npm install --production --unsafe-perm" in /opt/gz-siem-collector ."
+        echo ""
+fi
+
+
+
+if [ ! -f /opt/gz-siem-collector/api/config/config.json ]; then
+    echo ""
+    echo ""
+
+    echo "Identified a new/not configured installation, generating a default config.json and TLS certificates..."
+    echo ""
+    cert_pass="$(openssl rand -base64 16)"
+    openssl req -newkey rsa:2048 -days 365 -x509 -keyout certs/sslkey.pem -out certs/ssl.cer -sha256 -subj "/C=RO/O=BD/CN=DEFAULT_SIEM_COLLECTOR_CERT/" -passout pass:$cert_pass
+
+    auth_string="$(openssl rand -base64 24)";
+    auth_string=$(printf '%s\n' "$auth_string" | sed -e 's/[]\/$*.^[]/\\&/g');
+
+    cert_pass=$(printf '%s\n' "$cert_pass" | sed -e 's/[]\/$*.^[]/\\&/g');
+
+    sed "s/5678secure5678/$auth_string/" /opt/gz-siem-collector/api/config/config.json.template > /opt/gz-siem-collector/api/config/config.json
+    sed -i "s/1234pass1234/$cert_pass/" /opt/gz-siem-collector/api/config/config.json
+else
+    if [ ! -f /opt/gz-siem-collector/certs/ssl.cer ] || [ ! -f /opt/gz-siem-collector/certs/sslkey.pem ]; then
+         echo ""
+         echo ""
+         echo "Found a config.json file in place, but certificates are missing. Regenerating new self signed certificates...."
+         echo ""
+
+         cert_pass="$(openssl rand -base64 16)"
+         openssl req -newkey rsa:2048 -days 365 -x509 -keyout certs/sslkey.pem -out certs/ssl.cer -sha256 -subj "/C=RO/O=BD/CN=DEFAULT_SIEM_COLLECTOR_CERT/" -passout pass:$cert_pass
+
+
+         auth_string="$(jq -r '.authorization_string' /opt/gz-siem-collector/api/config/config.json)"
+         auth_string=$(printf '%s\n' "$auth_string" | sed -e 's/[]\/$*.^[]/\\&/g');
+
+         cert_pass=$(printf '%s\n' "$cert_pass" | sed -e 's/[]\/$*.^[]/\\&/g');
+
+         sed "s/Basic\ 5678secure5678/$auth_string/" /opt/gz-siem-collector/api/config/config.json.template > /opt/gz-siem-collector/api/config/config.json
+         sed -i "s/1234pass1234/$cert_pass/" /opt/gz-siem-collector/api/config/config.json
+    fi
+fi
+
+
+
+
+add_group 'gzsiemcollector' ''
+add_user 'gzsiemcollector' '' 'gzsiemcollector' 'gzsiemcollector user-daemon' '/bin/false'
+
+chown -R 'gzsiemcollector:gzsiemcollector' '/opt/gz-siem-collector'
+
+echo ""
+echo ""
+
+echo "Enabling and starting gzsiemcollector service....."
+
+if systemctl enable gz-siem-collector.service && systemctl start gz-siem-collector.service; then
+       echo "The gz-siem-collector.service is now installed."
+else
+       echo "Failed to activate and/or start gz-siem-collector.service."
+fi
+
+echo ""
+echo ""
+echo "#####################################################################################"
+echo "gz-siem-collector  is currently installed using the following configuration settings:"
+jq '.' /opt/gz-siem-collector/api/config/config.json
+echo "#####################################################################################"
+echo "To tailor the configuration to your needs, modify the following configuration file:"
+echo "/opt/gz-siem-collector/api/config/config.json"
+echo "For more information, please refer to the KB article documenting this tool."
+echo "#####################################################################################"
+echo ""
+echo ""
+echo "#####################################################################################"
+echo ""
+echo "To start stop restart the service, use systemctl. "
+echo "eg. sudo systemctl restart gz-siem-collector"
+echo ""
+echo "To get the service status: sudo systemctl status gz-siem-collector"
+echo ""
+echo "Always restart the collector service after updating configuration files."
+echo ""
+echo "To inspect the gz-siem-collector service logs, you can use journalctl."
+echo "eg. journalctl -u gz-siem-collector"
+echo "    journalctl -fu gz-siem-collector"
+echo ""
+echo ""
+echo "#####################################################################################"
+
+
