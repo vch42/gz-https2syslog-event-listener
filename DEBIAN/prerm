@@ -3,7 +3,7 @@ set -e
 set -o pipefail
 
 declare -r init_type='systemd'
-declare -r service_name='gz-siem-collector'
+declare -r service_name='gz-https2syslog-event-listener'
 
 if [[ "$init_type" == 'auto' || "$init_type" == 'systemd' || "$init_type" == 'upstart' || "$init_type" == 'sysv' ]]; then
   if hash systemctl 2> /dev/null; then
