@@ -39,7 +39,7 @@ case "$1" in
       delete_group 'gzsiemcollector'
 
       cd /opt
-      rm -rf gz-siem-collector
+      rm -rf gz-https2syslog-event-listener
       cd -
     ;;
   *)
