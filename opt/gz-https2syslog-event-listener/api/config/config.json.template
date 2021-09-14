@@ -1,0 +1,12 @@
+{
+        "port":3200,
+        "syslog_port":514,
+        "transport":"Tcp",
+        "target":"127.0.0.1",
+        "authorization_string":"Basic 5678secure5678",
+        "secure":{
+                "key":"./certs/sslkey.pem",
+                "cert":"./certs/ssl.cer",
+                "passphrase":"1234pass1234"
+        }
+}
