@@ -1,0 +1,8 @@
+Package: gz-https2syslog-event-listener
+Version: 1.0.2
+Section: base
+Priority: optional
+Architecture: all
+Depends: nodejs, sudo, npm, jq, openssl
+Maintainer: Valentin Cheche (valentin@cheche.ro)
+Description: Simple nodejs client service that listens for authenticated HTTPS POST requests from GravityZone Cloud and forwards each row in the configured local or remote syslog.
