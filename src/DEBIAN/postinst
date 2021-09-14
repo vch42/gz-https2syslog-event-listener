@@ -104,10 +104,10 @@ fi
 
 
 
-add_group 'gzsiemcollector' ''
-add_user 'gzsiemcollector' '' 'gzsiemcollector' 'gzsiemcollector user-daemon' '/bin/false'
+add_group 'gzsiemlistener' ''
+add_user 'gzsiemlistener' '' 'gzsiemlistener' 'gzsiemlistener user-daemon' '/bin/false'
 
-chown -R 'gzsiemcollector:gzsiemcollector' '/opt/gz-https2syslog-event-listener'
+chown -R 'gzsiemlistener:gzsiemlistener' '/opt/gz-https2syslog-event-listener'
 
 echo ""
 echo ""
