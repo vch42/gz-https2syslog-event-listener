@@ -22,29 +22,29 @@ http://download.bitdefender.com/business/API/Bitdefender_GravityZone_Cloud_APIGu
 <br />
 
 ### Contents:
-.
-├── DEBIAN
-│   ├── control
-│   ├── md5sums
-│   ├── postinst
-│   ├── postrm
-│   ├── preinst
-│   └── prerm
-├── lib
-│   └── systemd
-│       └── system
-│           └── gz-siem-collector.service
-└── opt
-    └── gz-siem-collector
-        ├── api
-        │   ├── config
-        │   │   └── config.json.template
-        │   └── epsSyslogHelper.js
-        ├── certs
-        ├── package.json
-        └── server.js
-
-9 directories, 11 files
+.<br />
+├── DEBIAN<br />
+│   ├── control<br />
+│   ├── md5sums<br />
+│   ├── postinst<br />
+│   ├── postrm<br />
+│   ├── preinst<br />
+│   └── prerm<br />
+├── lib<br />
+│   └── systemd<br />
+│       └── system<br />
+│           └── gz-siem-collector.service<br />
+└── opt<br />
+    └── gz-siem-collector<br />
+        ├── api<br />
+        │   ├── config<br />
+        │   │   └── config.json.template<br />
+        │   └── epsSyslogHelper.js<br />
+        ├── certs<br />
+        ├── package.json<br />
+        └── server.js<br />
+<br />
+9 directories, 11 files<br />
 <br />
 <br />
 
