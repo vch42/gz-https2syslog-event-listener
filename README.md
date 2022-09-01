@@ -23,6 +23,8 @@ http://download.bitdefender.com/business/API/Bitdefender_GravityZone_Cloud_APIGu
 * upgrade mechanism (will not overwrite an existing valid configuration)
 * automatic installation, no need to manually edit source code files
 
+> :warning: **UPDATE:** Bitdefender updated the KB article mentioned above and now provides a updated script similar to this package which will install and configure a listener. You may want to check that one out instead: https://www.bitdefender.com/business/support/en/77209-144080-build-an-event-push-service-api-connector-for-cef-standard.html
+
 <br />
 
 ### Contents:
