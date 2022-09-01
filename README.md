@@ -8,7 +8,7 @@ This package is based of this Bitdefender GravityZone KB article (but does not i
 https://www.bitdefender.com/support/sending-events-from-gravityzone-cloud-to-siems-lacking-https-listeners-2373.html <br />
 <br />
 Bitdefender GravityZone Cloud Push Events documentation: <br />
-http://download.bitdefender.com/business/API/Bitdefender_GravityZone_Cloud_APIGuide_forPartners_enUS.pdf#page=185<br />
+https://www.bitdefender.com/business/support/en/77209-135318-push.html<br />
 <br />
 <br />
 
