@@ -1,5 +1,8 @@
 # gz-https2syslog-event-listener
-
+<br />
+<br />
+> :warning: **UPDATE:** This repo is NOT actively maintained. Bitdefender updated the KB article mentioned below and now provides a updated script similar to this package which will install and configure a listener. You may want to check that one out instead: https://www.bitdefender.com/business/support/en/77209-144080-build-an-event-push-service-api-connector-for-cef-standard.html
+<br />
 <br />
 Simple nodejs client service that listens for authenticated HTTPS POST requests from GravityZone Cloud and forwards each row in the configured local or remote syslog.<br />
 Can be used to receive and forward GravityZone Cloud Push Events to SIEMs which do not have a native HTTPS listener, but are capable of ingesting events via syslog.<br />
@@ -23,7 +26,6 @@ https://www.bitdefender.com/business/support/en/77209-135318-push.html<br />
 * upgrade mechanism (will not overwrite an existing valid configuration)
 * automatic installation, no need to manually edit source code files
 
-> :warning: **UPDATE:** Bitdefender updated the KB article mentioned above and now provides a updated script similar to this package which will install and configure a listener. You may want to check that one out instead: https://www.bitdefender.com/business/support/en/77209-144080-build-an-event-push-service-api-connector-for-cef-standard.html
 
 <br />
 
